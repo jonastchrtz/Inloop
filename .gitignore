@@ -7,6 +7,8 @@
 *.o
 *.so
 *.iml
+.idea/
+out/
 
 # Packages #
 ############
