@@ -1,6 +1,7 @@
 package lesson4;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Library {
 
@@ -27,6 +28,8 @@ public class Library {
 
     public Collection <Book> searchForAuthor (String author) {
 
+        /*
+
         Collection <Book> search_list = new ArrayList <> ();
 
         for (Book book : stock) {
@@ -38,6 +41,12 @@ public class Library {
         }
 
         return search_list;
+
+         */
+
+        return stock.stream()
+                    .filter(e -> author.equals(e.getAuthor()))
+                    .collect(Collectors.toList());
 
     }
 
