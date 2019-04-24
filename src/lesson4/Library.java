@@ -4,10 +4,12 @@ import java.util.*;
 
 public class Library {
 
-    private List <Book> stock = new ArrayList();
+    private List <Book> stock = new ArrayList <> ();
 
     public void sortedInsertion(Book newBook) {
 
+        stock.add(newBook);
+        Collections.sort(stock);
 
     }
 
@@ -15,7 +17,7 @@ public class Library {
 
         if (Collections.binarySearch(stock, new Book(isbn)) >= 0) {
 
-            return new Book(isbn);
+            return stock.get(Collections.binarySearch(stock, new Book(isbn)));
 
         }
 
@@ -23,9 +25,20 @@ public class Library {
 
     }
 
-    public Collection<Book> searchForAuthor (String author) {
+    public Collection <Book> searchForAuthor (String author) {
 
-        return null;
+        Collection <Book> search_list = new ArrayList <> ();
+
+        for (Book book : stock) {
+
+            if (author.equals(book.getAuthor())) {
+
+                search_list.add(book);
+            }
+        }
+
+        return search_list;
+
     }
 
 }
