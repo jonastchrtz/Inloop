@@ -17,8 +17,7 @@ public class Noble extends Inhabitant{
 
         }
 
-        int real_tax = (int) d_real_tax;
-        return real_tax;
+        return (int) d_real_tax;
 
 
     }

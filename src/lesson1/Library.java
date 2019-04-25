@@ -31,7 +31,7 @@ public class Library {
 
    public Book search(String title) {
 
-       for (Book book : this.myBooks) {
+       for (Book book : myBooks) {
 
            if (book == null) {
 

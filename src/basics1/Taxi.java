@@ -5,12 +5,11 @@ import java.util.ArrayList;
 public class Taxi {
 
     private Human driver;
-    // private Human passenger;
     private ArrayList<Human> pass_list;
 
     public Taxi(Human driver) {
 
-        pass_list = new ArrayList<Human>();
+        pass_list = new ArrayList<>();
         this.driver = driver;
     }
 
@@ -63,19 +62,10 @@ public class Taxi {
 
     public Human[] allGetOut() {
 
-        /*if (pass_list.size() == 0) {
-
-            return new Human[]{};
-        } else { */
-
-            Human[] arr = pass_list.toArray(new Human[pass_list.size()]);
-
+            Human[] arr = pass_list.toArray(new Human[0]);
             pass_list.clear();
             return arr;
-       // }
-
 
     }
-
 
 }

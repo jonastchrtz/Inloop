@@ -6,9 +6,7 @@ public class Inhabitant {
 
     public int taxableIncome() {
 
-        int taxableIncome = income;
-
-        return taxableIncome;
+        return income;
 
     }
 
