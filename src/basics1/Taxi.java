@@ -32,9 +32,7 @@ public class Taxi {
 
     public String toString() {
 
-        int size = pass_list.size();
-
-        switch (size) {
+        switch (pass_list.size()) {
             case 0:
                 return "This is the taxi of " + getDriverName() + ". He takes nobody along.";
 
