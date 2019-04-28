@@ -9,12 +9,7 @@ public class Library {
 
     public boolean insertBook(Book newBook) {
 
-        if (stock.contains(newBook))
-
-            return false;
-
-        stock.add(newBook);
-        return true;
+       return stock.add(newBook);
 
     }
 
@@ -61,7 +56,6 @@ public class Library {
     public Map <String, Set <Book>> listStockByAuthor() {
 
         Map <String, Set <Book>> stock_author = new TreeMap<> ();
-
 
         for (Book e : stock) {
 
