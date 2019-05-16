@@ -2,7 +2,7 @@ package exam2;
 
 public class Purchasing implements StockObserver {
 
-    protected ReceivingStock receivingStock;
+    private ReceivingStock receivingStock;
 
     public Purchasing(ReceivingStock receivingStock) {
 

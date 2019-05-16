@@ -2,8 +2,8 @@ package exam2;
 
 public class ReceivingStock extends Stock {
 
-    protected int minStockItems;
-    protected int maxStockItems;
+    private int minStockItems;
+    private int maxStockItems;
 
     public ReceivingStock(int minStockItems, int maxStockItems) {
 
