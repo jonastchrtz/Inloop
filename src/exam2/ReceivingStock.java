@@ -2,8 +2,8 @@ package exam2;
 
 public class ReceivingStock extends Stock {
 
-    private int minStockItems;
-    private int maxStockItems;
+    protected int minStockItems;
+    protected int maxStockItems;
 
     public ReceivingStock(int minStockItems, int maxStockItems) {
 
@@ -20,27 +20,15 @@ public class ReceivingStock extends Stock {
     @Override
     public boolean insert(Part part, int amount) {
 
-        if (parts.containsKey(part)){
-            int new_amount = this.parts.get(part) + amount;
-            parts.put(part, new_amount);
-        } else {
-            parts.put(part, amount);
-        }
-        this.notifyPartCountChanged(part, this.parts.get(part));
-        return true;
+        if (amount > getMaxStockItems()) {return false;}
 
+        return super.insert(part, amount);
     }
 
     @Override
     public boolean remove(Part part, int amount) {
 
         return super.remove(part, amount);
-
-    }
-
-    public void notifyPartCountChanged(Part part, int amount) {
-
-        observers.onPartCountChanged(part, amount);
 
     }
 

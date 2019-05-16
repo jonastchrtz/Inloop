@@ -26,14 +26,19 @@ public abstract class Stock {
         if (amount < 1) {throw new IllegalArgumentException();}
         if(part == null) {throw new NullPointerException();}
 
-        if(parts.containsKey(part)) {
+        if (parts.containsKey(part)) {
 
-            parts.put(part, amount + parts.get(part));
-            return true;
+            parts.put(part, parts.get(part) + amount);
+            notifyPartCountChanged(part, this.parts.get(part));
 
         }
 
-        parts.replace(part, amount);
+        else {
+
+            parts.put(part, amount);
+            notifyPartCountChanged(part, this.parts.get(part));
+
+        }
 
         return true;
 
@@ -46,7 +51,8 @@ public abstract class Stock {
 
         if(parts.containsKey(part) && parts.get(part) >= amount) {
 
-            parts.remove(part, amount);
+            parts.put(part, parts.get(part) - amount);
+            notifyPartCountChanged(part, parts.get(part));
             return true;
 
         }
@@ -60,6 +66,16 @@ public abstract class Stock {
         if(observer == null) {throw new NullPointerException();}
 
         observers = observer;
+
+    }
+
+    public void notifyPartCountChanged(Part part, int amount) {
+
+        try {
+
+            observers.onPartCountChanged(part, amount);
+
+        } catch (NullPointerException e){}
 
     }
 

@@ -2,8 +2,8 @@ package exam2;
 
 public class Factory {
 
-    private ReceivingStock receivingStock;
-    private Purchasing purchasing;
+    protected ReceivingStock receivingStock;
+    protected Purchasing purchasing;
 
     public Factory(Purchasing purchasing, ReceivingStock receivingStock) {
 

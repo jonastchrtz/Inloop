@@ -2,7 +2,7 @@ package exam2;
 
 public class Purchasing implements StockObserver {
 
-    private ReceivingStock receivingStock;
+    protected ReceivingStock receivingStock;
 
     public Purchasing(ReceivingStock receivingStock) {
 
@@ -19,7 +19,6 @@ public class Purchasing implements StockObserver {
 
         receivingStock.insert(part, count);
 
-
     }
 
     public ReceivingStock getStock() {return receivingStock;}
@@ -27,9 +26,10 @@ public class Purchasing implements StockObserver {
     @Override
     public void onPartCountChanged(Part part, int count) {
 
-        if (count < getStock().getMinStockItems()) {
-            receivingStock.parts.put(part, 0);
-            buy(part, this.receivingStock.getMaxStockItems());
+       if (count < getStock().getMinStockItems()) {
+
+            buy(part, receivingStock.getMaxStockItems() - receivingStock.parts.get(part));
+
         }
 
     }
