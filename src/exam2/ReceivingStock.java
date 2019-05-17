@@ -25,11 +25,4 @@ public class ReceivingStock extends Stock {
         return super.insert(part, amount);
     }
 
-    @Override
-    public boolean remove(Part part, int amount) {
-
-        return super.remove(part, amount);
-
-    }
-
 }
