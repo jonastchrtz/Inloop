@@ -1,4 +1,4 @@
-package Inloop.Basic.Java_and_Functions;
+package Inloop.Basics.Java_and_Functions;
 
 import org.junit.Test;
 

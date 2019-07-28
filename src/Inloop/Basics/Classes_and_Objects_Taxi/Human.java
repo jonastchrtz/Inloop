@@ -1,4 +1,4 @@
-package Inloop.Basic.Classes_and_Objects_Taxi;
+package Inloop.Basics.Classes_and_Objects_Taxi;
 
 public class Human {
 

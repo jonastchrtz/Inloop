@@ -1,4 +1,4 @@
-package Inloop.Basic.Linked_List;
+package Inloop.Basics.Linked_List;
 
 public class List {
 

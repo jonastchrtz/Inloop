@@ -1,4 +1,4 @@
-package Inloop.Basic.String_Processing_Leetspeek;
+package Inloop.Basics.String_Processing_Leetspeek;
 
 public class Leet {
 
