@@ -9,7 +9,7 @@ public class PredicateIterator <T> implements java.util.Iterator{
 
     private List<T> list;
     private T nextObject;
-    private T argument;
+    //private T argument;
 
     private Iterator<T> iter;
     private Predicate<T> pred;
@@ -18,7 +18,7 @@ public class PredicateIterator <T> implements java.util.Iterator{
 
         this.iter = iter;
         this.pred = pred;
-        this.argument = argument;
+        //this.argument = argument;
         this.list = new ArrayList<>();
 
         while(iter.hasNext()) {
