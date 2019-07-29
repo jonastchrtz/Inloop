@@ -36,7 +36,7 @@ public class Surface extends RenovationObject{
 
     public Map<String, Integer> addMaterialReq(Map<String, Integer> materials) {
 
-        if(selectedMaterial == null || materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
+        //if(selectedMaterial == null || materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
 
         System.out.println(materials);
 
@@ -44,9 +44,9 @@ public class Surface extends RenovationObject{
 
         for (Map.Entry<String, Integer> e : materials.entrySet()) {
 
-            System.out.println(e.getKey() + " " + e.getValue());
+
         }
-        return null;
+        return result;
 
     }
 

@@ -11,4 +11,13 @@ public class Holding extends AbstractUnit {
     @Override
     public String getName() {return name;}
 
+    @Override
+    public boolean add(AbstractEnterpriseUnit childNode) {
+
+        if (childNode instanceof Holding || childNode instanceof Division || childNode instanceof Team) {
+            throw new IllegalArgumentException();
+        }
+        return super.add(childNode);
+
+    }
 }

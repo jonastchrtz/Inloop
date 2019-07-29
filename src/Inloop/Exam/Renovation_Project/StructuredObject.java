@@ -29,11 +29,24 @@ public class StructuredObject extends RenovationObject {
 
     public Map<String, Integer> addMaterialReq(Map<String, Integer> materials) {
 
-        if(materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
+        //if(materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
 
         System.out.println(parts);
 
-        return new HashMap<>(materials);
+        HashMap<String, Integer> result = new HashMap<>();
+
+        for (Map.Entry<String, Integer> e : materials.entrySet()) {
+
+            System.out.println(e.getKey() + e.getValue());
+
+            if (!(result.containsKey(e.getKey()))) {
+                result.put(e.getKey(), e.getValue());
+            } else if (result.containsKey(e.getKey())) {
+                result.replace(e.getKey(), (e.getValue() + result.get(e.getKey())));
+            }
+        }
+
+        return result;
 
 
     }

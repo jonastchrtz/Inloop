@@ -1,21 +1,29 @@
 package Inloop.Exam.Event_App;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements EventCatalog  {
 
-    private TreeMap<Event, Set<Time>> catalog = new TreeMap<>();
+    private HashMap<Event, Set<Time>> catalog = new HashMap<>();
 
     @Override
     public boolean addCatalogEntry(Event e, Set<Time> tSet) {
 
         if(tSet.contains(null)) {throw new NullPointerException();}
 
-        if(catalog.containsKey(e.getTitle())) {System.out.println("Uff " + e);return false;}
+        for (Map.Entry<Event, Set<Time>> entry : catalog.entrySet()) {
 
-        catalog.put(e, tSet);
+            System.out.println(entry.getKey().compareTo(e));
 
-        System.out.println(e);
+            if (entry.getKey().compareTo(e) == 0) {
+                return false;
+            } else {
+                catalog.put(e, tSet);
+            }
+        }
 
         return true;
 
@@ -26,7 +34,12 @@ public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements Event
 
         if(t == null) {throw new NullPointerException();}
 
-        if(!(catalog.containsKey(e))) {return false;}
+        if (!(catalog.containsKey(e))) {
+            return true;
+        }
+        if (catalog.get(e).contains(t)) {
+            return false;
+        }
 
         catalog.get(e).add(t);
 

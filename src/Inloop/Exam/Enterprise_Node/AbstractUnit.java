@@ -16,10 +16,11 @@ public abstract class AbstractUnit extends AbstractEnterpriseUnit{
     public boolean add(AbstractEnterpriseUnit childNode) {
 
         if(childNode == null) throw new NullPointerException();
+        if (getChildNodes().contains(childNode)) {
+            return false;
+        }
 
-
-
-        return true;
+        return childNodes.add(childNode);
 
     }
 
