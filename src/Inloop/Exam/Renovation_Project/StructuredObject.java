@@ -7,11 +7,11 @@ import java.util.Set;
 
 public class StructuredObject extends RenovationObject {
 
-    private Set<RenovationObject> parts = new HashSet<>();
+    private Set<RenovationObject> parts;
 
     public StructuredObject() {
 
-        parts.add(this);
+        parts = new HashSet<>();
 
     }
 
@@ -24,31 +24,42 @@ public class StructuredObject extends RenovationObject {
     }
 
     public double getPrice() {
-        return 0;
+
+        double price = 0;
+
+        for(RenovationObject e : parts) {
+
+            price += e.getPrice();
+
+        }
+
+        return price;
+
     }
 
     public Map<String, Integer> addMaterialReq(Map<String, Integer> materials) {
 
-        //if(materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
+        for(String e : materials.keySet()) {
 
-        System.out.println(parts);
+            if(e == null) {throw new NullPointerException();}
+        }
 
-        HashMap<String, Integer> result = new HashMap<>();
+        for(Integer i : materials.values()) {
 
-        for (Map.Entry<String, Integer> e : materials.entrySet()) {
+            if(i == null) {throw new NullPointerException();}
 
-            System.out.println(e.getKey() + e.getValue());
+        }
 
-            if (!(result.containsKey(e.getKey()))) {
-                result.put(e.getKey(), e.getValue());
-            } else if (result.containsKey(e.getKey())) {
-                result.replace(e.getKey(), (e.getValue() + result.get(e.getKey())));
-            }
+
+        HashMap<String, Integer> result = new HashMap<>(materials);
+
+        for (RenovationObject e : parts) {
+
+           result.putAll(e.addMaterialReq(materials));
+
         }
 
         return result;
 
-
     }
-
 }

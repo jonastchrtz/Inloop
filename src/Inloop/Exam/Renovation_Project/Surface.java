@@ -36,18 +36,34 @@ public class Surface extends RenovationObject{
 
     public Map<String, Integer> addMaterialReq(Map<String, Integer> materials) {
 
-        //if(selectedMaterial == null || materials.containsKey(null) || materials.containsValue(null)) throw new NullPointerException();
+        for(String e : materials.keySet()) {
 
-        System.out.println(materials);
+            if(e == null) {throw new NullPointerException();}
+        }
+
+        for(Integer i : materials.values()) {
+
+            if(i == null) {throw new NullPointerException();}
+
+        }
 
         Map<String, Integer> result = new HashMap<>();
 
-        for (Map.Entry<String, Integer> e : materials.entrySet()) {
+        if(materials.isEmpty()) {result.put(selectedMaterial.getName(), selectedMaterial.getMaterialReq(this));}
 
+        else {
 
+            result.putAll(materials);
+
+            if(result.containsKey(selectedMaterial.getName())) {
+
+                int i = result.get(selectedMaterial.getName());
+                result.replace(selectedMaterial.getName(), i + selectedMaterial.getMaterialReq(this));
+
+            }
         }
+
         return result;
 
     }
-
 }
