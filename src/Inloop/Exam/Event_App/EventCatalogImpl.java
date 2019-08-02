@@ -1,76 +1,91 @@
 package Inloop.Exam.Event_App;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class EventCatalogImpl extends TreeMap<Event, Set<Time>> implements EventCatalog  {
 
-    private HashMap<Event, Set<Time>> catalog = new HashMap<>();
-
     @Override
     public boolean addCatalogEntry(Event e, Set<Time> tSet) {
 
-        if(tSet.contains(null)) {throw new NullPointerException();}
+        if(tSet == null || tSet.contains(null)) {throw new NullPointerException();}
 
-        for (Map.Entry<Event, Set<Time>> entry : catalog.entrySet()) {
+        if (!getAllEvents().contains(e)){
 
-            System.out.println(entry.getKey().compareTo(e));
+            put(e, tSet);
+            return true;
 
-            if (entry.getKey().compareTo(e) == 0) {
-                return false;
-            } else {
-                catalog.put(e, tSet);
-            }
         }
 
-        return true;
+        return false;
 
     }
 
     @Override
     public boolean addTimeToEvent(Event e, Time t) {
 
-        if(t == null) {throw new NullPointerException();}
+        if(e == null || t == null) {throw new NullPointerException();}
 
-        if (!(catalog.containsKey(e))) {
+        if(containsKey(e) && !getTimesOfEvent(e).contains(t)) {
+
+            Set<Time> times = get(e);
+            times.add(t);
+            put(e, times);
+
             return true;
-        }
-        if (catalog.get(e).contains(t)) {
-            return false;
+
         }
 
-        catalog.get(e).add(t);
-
-       return false;
+    return false;
 
     }
 
     @Override
-    public Set<Event> getAllEvents() {return catalog.keySet();}
+    public Set<Event> getAllEvents() {return keySet();}
 
     @Override
-    public Set<Time> getTimesOfEvent(Event e) {return catalog.get(e);}
+    public Set<Time> getTimesOfEvent(Event e) {return get(e);}
 
     @Override
     public Map<Event, Set<Time>> filterByEventCategory(EventCategory category) {
 
         if(category == null) {throw new NullPointerException();}
-        return null;
+
+        Map<Event, Set<Time>> filtered = new TreeMap<>();
+
+        for(Event e : getAllEvents()) {
+
+            if(e.getCategory() == category) {
+
+                filtered.put(e, get(e));
+
+            }
+        }
+
+        return filtered;
+
     }
 
     @Override
-    public Set<Time> deleteEvent(Event e) {
-
-        if(e == null) {throw new NullPointerException();}
-        return null;
-    }
+    public Set<Time> deleteEvent(Event e) {return remove(e);}
 
     @Override
     public boolean deleteTime(Event e, Time t) {
 
         if(e == null || t == null) {throw new NullPointerException();}
+
+        Set<Time> times = getTimesOfEvent(e);
+
+        if(times!= null && times.contains(t)) {
+
+            times.remove(t);
+            addCatalogEntry(e, times);
+            return true;
+
+        }
+
         return false;
+
     }
 }

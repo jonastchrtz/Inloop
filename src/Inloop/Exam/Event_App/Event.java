@@ -24,24 +24,9 @@ public class Event implements Comparable<Event> {
 
         if(o == null) {throw new NullPointerException();}
 
-        if(!(o.getTitle().equals(title))) {
+        if(title.equals(o.getTitle())) {return category.compareTo(o.getCategory());}
 
-            if(o.getTitle().length() < title.length()) {return 1;}
-            if(o.getTitle().length() > title.length()) {return -1;}
-            if(o.getCategory().ordinal() < category.ordinal()) {return 1;}
-            if(o.getCategory().ordinal() > category.ordinal()) {return -1;}
-
-        }
-
-        if(o.getTitle().equals(title)) {
-
-            if(o.getCategory().ordinal() < category.ordinal()) {return 1;}
-            if(o.getCategory().ordinal() > category.ordinal()) {return -1;}
-
-        }
-
-        return 0;
+        return title.compareTo(o.getTitle());
 
     }
-
 }
